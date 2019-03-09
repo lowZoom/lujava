@@ -18,5 +18,9 @@ public interface GenericType {
     return of(subclass.getGenericSuperclass());
   }
 
+  static <T> GenericType fromSubclassInstance(T instance, Class<T> parentType) {
+    return GenericTypeFromSubclassInstance.SINGLETON.create(instance, parentType);
+  }
+
   <T> Class<T> getTypeArg(int index);
 }
