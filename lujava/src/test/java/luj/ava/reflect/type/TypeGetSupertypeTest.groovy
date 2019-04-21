@@ -3,7 +3,7 @@ package luj.ava.reflect.type
 import com.google.common.reflect.TypeToken
 import spock.lang.Specification
 
-class TypeXGetSupertypeTest extends Specification {
+class TypeGetSupertypeTest extends Specification {
 
   TypeToken _token
 
@@ -25,7 +25,7 @@ class TypeXGetSupertypeTest extends Specification {
   }
 
   TypeX get() {
-    return TypeXGetSupertype.SINGLETON.get(_token, _superclass)
+    return TypeGetSupertype.SINGLETON.get(_token, _superclass)
   }
 
   private interface IA {
