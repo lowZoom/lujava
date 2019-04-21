@@ -2,6 +2,7 @@ package luj.ava.reflect.type;
 
 import com.google.common.reflect.TypeToken;
 
+@SuppressWarnings("unchecked")
 final class TypeXImpl<T> implements TypeX<T> {
 
   TypeXImpl(TypeToken<T> token) {
@@ -9,8 +10,8 @@ final class TypeXImpl<T> implements TypeX<T> {
   }
 
   @Override
-  public <T1> TypeX<T1> getSupertype(Class<T1> superclass) {
-    return TypeXGetSupertype.SINGLETON.get(_token, superclass);
+  public <P> TypeX<P> getSupertype(Class<P> superclass) {
+    return TypeGetSupertype.SINGLETON.get(_token, superclass);
   }
 
   @Override
