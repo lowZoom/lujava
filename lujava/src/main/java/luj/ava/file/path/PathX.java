@@ -14,6 +14,8 @@ public interface PathX {
 
   Stream<PathX> walk();
 
+  boolean isDirectory();
+
   String getFileName();
 
   Path asPath();

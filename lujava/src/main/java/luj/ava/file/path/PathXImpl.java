@@ -1,5 +1,6 @@
 package luj.ava.file.path;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
@@ -20,6 +21,11 @@ final class PathXImpl implements PathX {
   @Override
   public Stream<PathX> walk() {
     return PathWalker.SINGLETON.walk(_path);
+  }
+
+  @Override
+  public boolean isDirectory() {
+    return Files.isDirectory(_path);
   }
 
   @Override
