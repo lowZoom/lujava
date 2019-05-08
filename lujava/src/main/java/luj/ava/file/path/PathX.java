@@ -12,9 +12,13 @@ public interface PathX {
 
   PathX findParentSibling(Consumer<PathType> filter);
 
+  PathX resolve(String first, String... more);
+
   Stream<PathX> walk();
 
   boolean isDirectory();
+
+  boolean isRegularFile();
 
   String getFileName();
 

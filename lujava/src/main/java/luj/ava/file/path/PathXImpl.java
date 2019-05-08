@@ -2,6 +2,7 @@ package luj.ava.file.path;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 import luj.ava.file.path.parent.sibling.ParentSiblingFinder;
@@ -19,6 +20,11 @@ final class PathXImpl implements PathX {
   }
 
   @Override
+  public PathX resolve(String first, String... more) {
+    return new PathXImpl(_path.resolve(Paths.get(first, more)));
+  }
+
+  @Override
   public Stream<PathX> walk() {
     return PathWalker.SINGLETON.walk(_path);
   }
@@ -26,6 +32,11 @@ final class PathXImpl implements PathX {
   @Override
   public boolean isDirectory() {
     return Files.isDirectory(_path);
+  }
+
+  @Override
+  public boolean isRegularFile() {
+    return Files.isRegularFile(_path);
   }
 
   @Override
