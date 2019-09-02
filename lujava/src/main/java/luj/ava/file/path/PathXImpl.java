@@ -1,5 +1,7 @@
 package luj.ava.file.path;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +13,7 @@ import luj.ava.file.path.walk.PathWalker;
 final class PathXImpl implements PathX {
 
   PathXImpl(Path path) {
-    _path = path;
+    _path = checkNotNull(path);
   }
 
   @Override
