@@ -1,10 +1,15 @@
 package luj.ava.reflect.type;
 
 import com.google.common.reflect.TypeToken;
+import java.lang.reflect.Type;
 
 public interface TypeX<T> {
 
   static <T> TypeX<T> of(Class<T> type) {
+    return of((Type) type);
+  }
+
+  static <T> TypeX<T> of(Type type) {
     return new TypeXImpl(TypeToken.of(type));
   }
 
