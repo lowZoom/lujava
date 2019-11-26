@@ -16,11 +16,15 @@ public interface PathX {
 
   Stream<PathX> walk();
 
+  Stream<PathX> list();
+
   boolean isDirectory();
 
   boolean isRegularFile();
 
   String getFileName();
+
+  long getSize();
 
   Path asPath();
 }

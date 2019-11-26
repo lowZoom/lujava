@@ -2,12 +2,14 @@ package luj.ava.file.path;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 import luj.ava.file.path.parent.sibling.ParentSiblingFinder;
+import luj.ava.file.path.walk.PathLister;
 import luj.ava.file.path.walk.PathWalker;
 
 final class PathXImpl implements PathX {
@@ -32,6 +34,11 @@ final class PathXImpl implements PathX {
   }
 
   @Override
+  public Stream<PathX> list() {
+    return PathLister.SINGLETON.list(_path);
+  }
+
+  @Override
   public boolean isDirectory() {
     return Files.isDirectory(_path);
   }
@@ -44,6 +51,16 @@ final class PathXImpl implements PathX {
   @Override
   public String getFileName() {
     return _path.getFileName().toString();
+  }
+
+  @Override
+  public long getSize() {
+    try {
+      return Files.size(_path);
+
+    } catch (IOException e) {
+      throw new UnsupportedOperationException(e);
+    }
   }
 
   @Override

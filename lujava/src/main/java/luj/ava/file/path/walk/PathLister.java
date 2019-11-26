@@ -6,15 +6,15 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 import luj.ava.file.path.PathX;
 
-public enum PathWalker {
+public enum PathLister {
   SINGLETON;
 
   /**
-   * @see Files#walk
+   * @see Files#list
    */
-  public Stream<PathX> walk(Path path) {
+  public Stream<PathX> list(Path path) {
     try {
-      return Files.walk(path).map(PathX::of);
+      return Files.list(path).map(PathX::of);
 
     } catch (IOException e) {
       throw new UnsupportedOperationException(e);
