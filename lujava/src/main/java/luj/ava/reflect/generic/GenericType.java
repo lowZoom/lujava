@@ -4,6 +4,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * @see luj.ava.reflect.type.TypeX
+ */
 @Deprecated
 public interface GenericType {
 
