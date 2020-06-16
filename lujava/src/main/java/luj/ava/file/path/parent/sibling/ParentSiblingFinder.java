@@ -24,7 +24,7 @@ public enum ParentSiblingFinder {
   }
 
   private TypeItem getSiblingCond(Consumer<PathType> filter) {
-    List<TypeItem> result = new ArrayList<>();
+    List<TypeItem> result = new ArrayList<>(1);
     TypeImpl input = new TypeImpl(result);
     filter.accept(input);
     return result.get(0);

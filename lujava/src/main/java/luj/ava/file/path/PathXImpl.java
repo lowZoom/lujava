@@ -20,7 +20,8 @@ final class PathXImpl implements PathX {
 
   @Override
   public PathX findParentSibling(Consumer<PathType> filter) {
-    return new PathXImpl(ParentSiblingFinder.SINGLETON.find(_path, filter));
+    Path result = ParentSiblingFinder.SINGLETON.find(_path, filter);
+    return result == null ? PathXNull.SINGLETON : new PathXImpl(result);
   }
 
   @Override
