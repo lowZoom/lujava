@@ -2,6 +2,7 @@ package luj.ava.file.path;
 
 import java.nio.file.Path;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 enum PathXNull implements PathX {
@@ -23,6 +24,11 @@ enum PathXNull implements PathX {
   }
 
   @Override
+  public <T> T walk(Function<Stream<PathX>, T> walker) {
+    return walker.apply(Stream.empty());
+  }
+
+  @Override
   public Stream<PathX> list() {
     return Stream.empty();
   }
@@ -39,6 +45,11 @@ enum PathXNull implements PathX {
 
   @Override
   public String getFileName() {
+    return null;
+  }
+
+  @Override
+  public String getFileNameWithoutExtenstion() {
     return null;
   }
 

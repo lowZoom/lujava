@@ -2,6 +2,7 @@ package luj.ava.file.path;
 
 import java.nio.file.Path;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public interface PathX {
@@ -14,7 +15,10 @@ public interface PathX {
 
   PathX resolve(String first, String... more);
 
+  @Deprecated
   Stream<PathX> walk();
+
+  <T> T walk(Function<Stream<PathX>, T> walker);
 
   Stream<PathX> list();
 
@@ -23,6 +27,8 @@ public interface PathX {
   boolean isRegularFile();
 
   String getFileName();
+
+  String getFileNameWithoutExtenstion();
 
   long getSize();
 

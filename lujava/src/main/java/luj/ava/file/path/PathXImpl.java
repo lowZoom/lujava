@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import luj.ava.file.path.parent.sibling.ParentSiblingFinder;
 import luj.ava.file.path.walk.PathLister;
@@ -35,6 +36,14 @@ final class PathXImpl implements PathX {
   }
 
   @Override
+  public <T> T walk(Function<Stream<PathX>, T> walker) {
+    Stream<PathX> stream = PathWalker.SINGLETON.walk(_path);
+    T result = walker.apply(stream);
+    stream.close();
+    return result;
+  }
+
+  @Override
   public Stream<PathX> list() {
     return PathLister.SINGLETON.list(_path);
   }
@@ -52,6 +61,13 @@ final class PathXImpl implements PathX {
   @Override
   public String getFileName() {
     return _path.getFileName().toString();
+  }
+
+  @Override
+  public String getFileNameWithoutExtenstion() {
+    String fileName = getFileName();
+    int dotIndex = fileName.lastIndexOf('.');
+    return (dotIndex == -1) ? fileName : fileName.substring(0, dotIndex);
   }
 
   @Override
