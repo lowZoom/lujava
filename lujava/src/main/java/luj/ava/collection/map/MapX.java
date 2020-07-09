@@ -16,4 +16,13 @@ public interface MapX<K, V> extends Map<K, V> {
   static <K, V> Builder<K, V> builder() {
     return new MapBuilderImpl<>(ImmutableMap.builder());
   }
+
+  @SuppressWarnings("unchecked")
+  static <K, V> Map<K, V> copyOf(Object[][] entries) {
+    ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
+    for (Object[] entry : entries) {
+      builder.put((K) entry[0], (V) entry[1]);
+    }
+    return builder.build();
+  }
 }
