@@ -66,6 +66,9 @@ final class PathXImpl implements PathX {
   @Override
   public String getFileNameWithoutExtenstion() {
     String fileName = getFileName();
+    if (isDirectory()) {
+      return fileName;
+    }
     int dotIndex = fileName.lastIndexOf('.');
     return (dotIndex == -1) ? fileName : fileName.substring(0, dotIndex);
   }

@@ -15,6 +15,9 @@ public interface PathX {
 
   PathX resolve(String first, String... more);
 
+  /**
+   * @see #walk(Function)
+   */
   @Deprecated
   Stream<PathX> walk();
 
