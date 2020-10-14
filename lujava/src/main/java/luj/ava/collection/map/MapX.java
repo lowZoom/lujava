@@ -25,4 +25,8 @@ public interface MapX<K, V> extends Map<K, V> {
     }
     return builder.build();
   }
+
+  static <K, V> Map<K, V> nonNull(Map<K, V> map) {
+    return (map == null) ? ImmutableMap.of() : map;
+  }
 }
