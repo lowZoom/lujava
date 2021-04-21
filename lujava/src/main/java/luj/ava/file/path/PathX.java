@@ -23,7 +23,13 @@ public interface PathX {
 
   <T> T walk(Function<Stream<PathX>, T> walker);
 
+  /**
+   * @see #list(Function)
+   */
+  @Deprecated
   Stream<PathX> list();
+
+  <T> T list(Function<Stream<PathX>, T> lister);
 
   boolean isDirectory();
 
@@ -36,4 +42,6 @@ public interface PathX {
   long getSize();
 
   Path asPath();
+
+  String toString();
 }

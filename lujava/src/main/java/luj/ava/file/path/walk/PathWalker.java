@@ -12,6 +12,7 @@ public enum PathWalker {
   /**
    * @see Files#walk
    */
+  @SuppressWarnings("resource")
   public Stream<PathX> walk(Path path) {
     try {
       return Files.walk(path).map(PathX::of);

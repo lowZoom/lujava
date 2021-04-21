@@ -49,6 +49,14 @@ final class PathXImpl implements PathX {
   }
 
   @Override
+  public <T> T list(Function<Stream<PathX>, T> lister) {
+    Stream<PathX> stream = PathLister.SINGLETON.list(_path);
+    T result = lister.apply(stream);
+    stream.close();
+    return result;
+  }
+
+  @Override
   public boolean isDirectory() {
     return Files.isDirectory(_path);
   }

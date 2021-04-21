@@ -34,6 +34,11 @@ enum PathXNull implements PathX {
   }
 
   @Override
+  public <T> T list(Function<Stream<PathX>, T> lister) {
+    return lister.apply(Stream.empty());
+  }
+
+  @Override
   public boolean isDirectory() {
     return false;
   }
