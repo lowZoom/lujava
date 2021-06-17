@@ -39,6 +39,9 @@ public interface PathX {
 
   String getFileNameWithoutExtenstion();
 
+  /**
+   * @return 字节数
+   */
   long getSize();
 
   Path asPath();
