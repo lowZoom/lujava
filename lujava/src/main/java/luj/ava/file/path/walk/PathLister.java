@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import luj.ava.file.path.PathX;
 
 public enum PathLister {
-  SINGLETON;
+  GET;
 
   /**
    * @see Files#list

@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 import luj.ava.file.path.PathType;
 
 public enum ParentSiblingFinder {
-  SINGLETON;
+  GET;
 
   public Path find(Path startPath, Consumer<PathType> filter) {
     TypeItem sibling = getSiblingCond(filter);

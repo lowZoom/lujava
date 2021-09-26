@@ -21,8 +21,8 @@ final class PathXImpl implements PathX {
 
   @Override
   public PathX findParentSibling(Consumer<PathType> filter) {
-    Path result = ParentSiblingFinder.SINGLETON.find(_path, filter);
-    return result == null ? PathXNull.SINGLETON : new PathXImpl(result);
+    Path result = ParentSiblingFinder.GET.find(_path, filter);
+    return result == null ? PathXNull.INSTANCE : new PathXImpl(result);
   }
 
   @Override
@@ -32,12 +32,12 @@ final class PathXImpl implements PathX {
 
   @Override
   public Stream<PathX> walk() {
-    return PathWalker.SINGLETON.walk(_path);
+    return PathWalker.GET.walk(_path);
   }
 
   @Override
   public <T> T walk(Function<Stream<PathX>, T> walker) {
-    Stream<PathX> stream = PathWalker.SINGLETON.walk(_path);
+    Stream<PathX> stream = PathWalker.GET.walk(_path);
     T result = walker.apply(stream);
     stream.close();
     return result;
@@ -45,12 +45,12 @@ final class PathXImpl implements PathX {
 
   @Override
   public Stream<PathX> list() {
-    return PathLister.SINGLETON.list(_path);
+    return PathLister.GET.list(_path);
   }
 
   @Override
   public <T> T list(Function<Stream<PathX>, T> lister) {
-    Stream<PathX> stream = PathLister.SINGLETON.list(_path);
+    Stream<PathX> stream = PathLister.GET.list(_path);
     T result = lister.apply(stream);
     stream.close();
     return result;

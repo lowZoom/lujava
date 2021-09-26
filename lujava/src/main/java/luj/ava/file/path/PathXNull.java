@@ -6,7 +6,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 enum PathXNull implements PathX {
-  SINGLETON;
+  INSTANCE;
 
   @Override
   public PathX findParentSibling(Consumer<PathType> filter) {

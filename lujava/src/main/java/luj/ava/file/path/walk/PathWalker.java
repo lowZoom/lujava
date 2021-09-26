@@ -7,16 +7,18 @@ import java.util.stream.Stream;
 import luj.ava.file.path.PathX;
 
 public enum PathWalker {
-  SINGLETON;
+  GET;
 
   /**
    * @see Files#walk
    */
-  @SuppressWarnings("resource")
   public Stream<PathX> walk(Path path) {
+    if (!Files.isDirectory(path)) {
+      return Stream.empty();
+    }
+
     try {
       return Files.walk(path).map(PathX::of);
-
     } catch (IOException e) {
       throw new UnsupportedOperationException(e);
     }
