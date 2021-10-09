@@ -19,6 +19,8 @@ public interface TypeX<T> {
     return (TypeX<T>) of(instance.getClass());
   }
 
+  boolean isAssignableTo(Class<?> clazz);
+
   <T1> TypeX<T1> getSupertype(Class<T1> superclass);
 
   <T1> TypeX<T1> getTypeParam(int index);

@@ -10,6 +10,11 @@ final class TypeXImpl<T> implements TypeX<T> {
   }
 
   @Override
+  public boolean isAssignableTo(Class<?> clazz) {
+    return clazz.isAssignableFrom(asClass());
+  }
+
+  @Override
   public <P> TypeX<P> getSupertype(Class<P> superclass) {
     return TypeGetSupertype.SINGLETON.get(_token, superclass);
   }
