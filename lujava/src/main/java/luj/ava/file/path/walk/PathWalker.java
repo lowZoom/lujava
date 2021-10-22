@@ -9,9 +9,6 @@ import luj.ava.file.path.PathX;
 public enum PathWalker {
   GET;
 
-  /**
-   * @see Files#walk
-   */
   public Stream<PathX> walk(Path path) {
     if (!Files.isDirectory(path)) {
       return Stream.empty();

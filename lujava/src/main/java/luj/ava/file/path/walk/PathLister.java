@@ -9,13 +9,13 @@ import luj.ava.file.path.PathX;
 public enum PathLister {
   GET;
 
-  /**
-   * @see Files#list
-   */
   public Stream<PathX> list(Path path) {
+    if (!Files.isDirectory(path)) {
+      return Stream.empty();
+    }
+
     try {
       return Files.list(path).map(PathX::of);
-
     } catch (IOException e) {
       throw new UnsupportedOperationException(e);
     }

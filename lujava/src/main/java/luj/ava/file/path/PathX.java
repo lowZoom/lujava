@@ -1,5 +1,6 @@
 package luj.ava.file.path;
 
+import java.nio.file.FileVisitOption;
 import java.nio.file.Path;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -21,6 +22,9 @@ public interface PathX {
   @Deprecated
   Stream<PathX> walk();
 
+  /**
+   * @see java.nio.file.Files#walk
+   */
   <T> T walk(Function<Stream<PathX>, T> walker);
 
   /**
@@ -29,6 +33,9 @@ public interface PathX {
   @Deprecated
   Stream<PathX> list();
 
+  /**
+   * @see java.nio.file.Files#list
+   */
   <T> T list(Function<Stream<PathX>, T> lister);
 
   boolean isDirectory();
