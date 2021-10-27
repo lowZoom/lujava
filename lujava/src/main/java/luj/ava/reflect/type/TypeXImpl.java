@@ -29,5 +29,10 @@ final class TypeXImpl<T> implements TypeX<T> {
     return (Class<T>) _token.getRawType();
   }
 
+  @Override
+  public String toString() {
+    return _token.toString();
+  }
+
   private final TypeToken<T> _token;
 }
