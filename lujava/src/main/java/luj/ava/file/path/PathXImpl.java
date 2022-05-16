@@ -68,7 +68,8 @@ final class PathXImpl implements PathX {
 
   @Override
   public String getFileName() {
-    return _path.getFileName().toString();
+    Path fileName = _path.getFileName();
+    return fileName == null ? "" : fileName.toString();
   }
 
   @Override
@@ -89,6 +90,12 @@ final class PathXImpl implements PathX {
     } catch (IOException e) {
       throw new UnsupportedOperationException(e);
     }
+  }
+
+  @Override
+  public PathX getParent() {
+    Path parent = _path.getParent();
+    return parent == null ? PathXNull.INSTANCE : new PathXImpl(parent);
   }
 
   @Override

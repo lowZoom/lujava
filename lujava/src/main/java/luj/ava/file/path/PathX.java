@@ -1,6 +1,5 @@
 package luj.ava.file.path;
 
-import java.nio.file.FileVisitOption;
 import java.nio.file.Path;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -50,6 +49,8 @@ public interface PathX {
    * @return 字节数
    */
   long getSize();
+
+  PathX getParent();
 
   Path asPath();
 

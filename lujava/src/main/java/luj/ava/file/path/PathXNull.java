@@ -64,6 +64,11 @@ enum PathXNull implements PathX {
   }
 
   @Override
+  public PathX getParent() {
+    return this;
+  }
+
+  @Override
   public Path asPath() {
     return null;
   }
