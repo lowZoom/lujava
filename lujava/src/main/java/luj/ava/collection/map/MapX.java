@@ -21,7 +21,11 @@ public interface MapX<K, V> extends Map<K, V> {
   static <K, V> Map<K, V> copyOf(Object[][] entries) {
     ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
     for (Object[] entry : entries) {
-      builder.put((K) entry[0], (V) entry[1]);
+      Object value = entry[1];
+      if (value == null) {
+        continue;
+      }
+      builder.put((K) entry[0], (V) value);
     }
     return builder.build();
   }
