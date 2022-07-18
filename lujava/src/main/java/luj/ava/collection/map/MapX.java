@@ -2,6 +2,7 @@ package luj.ava.collection.map;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public interface MapX<K, V> extends Map<K, V> {
 
@@ -19,13 +20,18 @@ public interface MapX<K, V> extends Map<K, V> {
 
   @SuppressWarnings("unchecked")
   static <K, V> Map<K, V> copyOf(Object[][] entries) {
+    return copyOf(entries, k -> (K) k);
+  }
+
+  @SuppressWarnings("unchecked")
+  static <K, V> Map<K, V> copyOf(Object[][] entries, Function<Object, K> keyMaker) {
     ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
     for (Object[] entry : entries) {
       Object value = entry[1];
       if (value == null) {
         continue;
       }
-      builder.put((K) entry[0], (V) value);
+      builder.put(keyMaker.apply(entry[0]), (V) value);
     }
     return builder.build();
   }
