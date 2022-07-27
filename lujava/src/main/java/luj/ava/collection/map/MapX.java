@@ -10,6 +10,8 @@ public interface MapX<K, V> extends Map<K, V> {
 
     Builder<K, V> put(K key, V value);
 
+    Map<K, V> build();
+
     @SuppressWarnings("rawtypes")
     <M extends Map<K, V>> M build(Class<? extends Map> mapType);
   }

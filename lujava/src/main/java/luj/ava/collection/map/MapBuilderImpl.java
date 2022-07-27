@@ -17,9 +17,15 @@ final class MapBuilderImpl<K, V> implements MapX.Builder<K, V> {
     return this;
   }
 
+  @Override
+  public Map<K, V> build() {
+    return _builder.build();
+  }
+
   @SuppressWarnings({"rawtypes", "unchecked"})
   @Override
   public <M extends Map<K, V>> M build(Class<? extends Map> mapType) {
+    //TODO: 转成对应类型
     return (M) _builder.build();
   }
 
