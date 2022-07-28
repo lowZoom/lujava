@@ -37,10 +37,9 @@ final class PathXImpl implements PathX {
 
   @Override
   public <T> T walk(Function<Stream<PathX>, T> walker) {
-    Stream<PathX> stream = PathWalker.GET.walk(_path);
-    T result = walker.apply(stream);
-    stream.close();
-    return result;
+    try (Stream<PathX> stream = PathWalker.GET.walk(_path)) {
+      return walker.apply(stream);
+    }
   }
 
   @Override
@@ -50,10 +49,9 @@ final class PathXImpl implements PathX {
 
   @Override
   public <T> T list(Function<Stream<PathX>, T> lister) {
-    Stream<PathX> stream = PathLister.GET.list(_path);
-    T result = lister.apply(stream);
-    stream.close();
-    return result;
+    try (Stream<PathX> stream = PathLister.GET.list(_path)) {
+      return lister.apply(stream);
+    }
   }
 
   @Override
