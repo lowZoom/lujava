@@ -2,10 +2,9 @@ package luj.ava.reflect.type;
 
 import com.google.common.reflect.TypeToken;
 
-@SuppressWarnings("unchecked")
 final class TypeXImpl<T> implements TypeX<T> {
 
-  TypeXImpl(TypeToken<T> token) {
+  TypeXImpl(TypeToken<?> token) {
     _token = token;
   }
 
@@ -14,16 +13,18 @@ final class TypeXImpl<T> implements TypeX<T> {
     return clazz.isAssignableFrom(asClass());
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public <P> TypeX<P> getSupertype(Class<P> superclass) {
-    return TypeGetSupertype.SINGLETON.get(_token, superclass);
+    return TypeGetSupertype.SINGLETON.get((TypeToken<P>) _token, superclass);
   }
 
   @Override
   public <T1> TypeX<T1> getTypeParam(int index) {
-    return new TypeXImpl(_token.resolveType(_token.getRawType().getTypeParameters()[index]));
+    return new TypeXImpl<>(_token.resolveType(_token.getRawType().getTypeParameters()[index]));
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public Class<T> asClass() {
     return (Class<T>) _token.getRawType();
@@ -34,5 +35,5 @@ final class TypeXImpl<T> implements TypeX<T> {
     return _token.toString();
   }
 
-  private final TypeToken<T> _token;
+  private final TypeToken<?> _token;
 }

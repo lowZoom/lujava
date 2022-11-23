@@ -9,14 +9,13 @@ public interface TypeX<T> {
     return of((Type) type);
   }
 
-  @SuppressWarnings("unchecked")
   static <T> TypeX<T> of(Type type) {
-    return new TypeXImpl(TypeToken.of(type));
+    return new TypeXImpl<>(TypeToken.of(type));
   }
 
   @SuppressWarnings("unchecked")
   static <T> TypeX<T> ofInstance(T instance) {
-    return (TypeX<T>) of(instance.getClass());
+    return of((Class<T>) instance.getClass());
   }
 
   boolean isAssignableTo(Class<?> clazz);
