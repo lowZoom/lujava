@@ -10,6 +10,10 @@ public interface StreamX<T> {
     return (c == null) ? Stream.empty() : c.stream();
   }
 
+  /**
+   * @see java.util.Optional#stream
+   */
+  @Deprecated
   static <T> Stream<T> from(Optional<T> o) {
     return o.map(Stream::of).orElseGet(Stream::empty);
   }
